@@ -8,7 +8,6 @@ phases:
   install:
     runtime-versions:
       nodejs: 14
-  pre_build:
     commands:
       - echo Istalling source NPM dependencies...
       - aws --version
