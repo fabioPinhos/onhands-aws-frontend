@@ -1,27 +1,23 @@
+# Do not change version. This is the version of aws buildspec, not the version of your buldspec file.
 version: 0.2
-env:
-  variables:
-    CACHE_CONTROL: "86400"
-    S3_BUCKET: "{{s3_bucket_url}}"
-    BUILD_FOLDER: "dist"
 phases:
-  install:
-    runtime-versions:
-      nodejs: 14
+  pre_build:
     commands:
-      - echo Istalling source NPM dependencies...
-      - aws --version
-      - npm cache clean --force      
-      - npm install -g @angular/cli@latest
+      - echo Installing source NPM dependencies...
       - npm install
-      - ng add @angular/material      
   build:
     commands:
-      - echo Build started on 'date'
-      - ng build  
+      - echo Build started on `date`
+      - echo Compiling the dist folder
+      - npm run-script build
+  post_build:
+    commands:
+      - echo Build completed on `date`
+# Include only the files required for your application to run.
 artifacts:
   files:
-    - '**/*'
-  base-directory: './dist*'
-  discard-paths: yes
-  
+    - index.js
+    - dist/**/*
+    - request-map.js
+    - credentials.json
+    - node_modules/**/*
