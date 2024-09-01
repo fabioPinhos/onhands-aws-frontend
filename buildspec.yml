@@ -5,7 +5,6 @@ phases:
     commands:
       - echo Installing source NPM dependencies...
       - npm install
-      - npm install -g @angular/cli
   build:
     commands:
       - echo Build started on `date`
@@ -13,7 +12,7 @@ phases:
       - npm build
   post_build:
     commands:
-      - echo Build completed on `date``
+      - echo Build completed on `date`
 # Include only the files required for your application to run.
 artifacts:
   files:
