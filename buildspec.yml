@@ -1,20 +1,24 @@
 # Do not change version. This is the version of aws buildspec, not the version of your buldspec file.
 version: 0.2
+env:
+  variable:
+    APP_NAME: "community-events-front"
 phases:
+  install:
+    runtime-versions:
+      nodejs: 14.x
   pre_build:
     commands:
       - echo Installing source NPM dependencies...
-      - npm install
+      - npm install && npm install -g @angular/cli
   build:
     commands:
       - echo Build started on `date`
       - echo Compiling the dist folder
-      - npm run-script build
+      - npm build
   post_build:
     commands:
       - echo Build completed on `date`
-# Include only the files required for your application to run.
-artifacts:
-  files:
-      - '**/*'
-  base-directory: 'dist*'
+      - cd dist/$APP_NAME
+      - ls -la
+      - aws s3 sync . s3://fabiopinhodev.com.br --delete
