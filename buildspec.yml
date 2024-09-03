@@ -3,7 +3,7 @@ version: 0.2
 env:
   variable:
     APP_NAME: "community-events-front"
-    S3_BUCKET: s3://fabiopinhodev.com.br
+    S3_BUCKET: fabiopinhodev.com.br
 phases:
   install:
     commands:
@@ -13,7 +13,7 @@ phases:
   build:
     commands:
       - echo Build started on `date`      
-      - npm build      
+      - npm run build      
   post_build:
     commands:
       - echo Clearing S3 bucket...
