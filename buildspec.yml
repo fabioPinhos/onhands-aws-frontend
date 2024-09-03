@@ -20,8 +20,8 @@ phases:
       - aws s3 rm s3://${S3_BUCKET} --recursive
       - echo Copying files to S3...
       - aws s3 cp dist/${APP_NAME} s3://${S3_BUCKET} 
-  artifacts:
-    files:
-      - '**/*'
-    discard-paths: no
-    base-directory: 'dist/${APP_NAME}/browser'
+artifacts:
+  files:
+    - '**/*'
+  discard-paths: no
+  base-directory: 'dist/${APP_NAME}/browser'
