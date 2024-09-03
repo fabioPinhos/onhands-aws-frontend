@@ -3,7 +3,6 @@ version: 0.2
 env:
   variable:
     APP_NAME: "community-events-front"
-    S3_BUCKET: fabiopinhodev.com.br
 phases:
   install:
     commands:
@@ -13,13 +12,7 @@ phases:
   build:
     commands:
       - echo Build started on `date`      
-      - npm run build      
-  post_build:
-    commands:
-      - echo Clearing S3 bucket...
-      - aws s3 rm s3://${S3_BUCKET} --recursive
-      - echo Copying files to S3...
-      - aws s3 cp dist/${APP_NAME} s3://${S3_BUCKET} 
+      - npm run build     
 artifacts:
   files:
     - '**/*'
