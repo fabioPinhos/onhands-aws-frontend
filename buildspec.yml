@@ -6,12 +6,10 @@ env:
     S3_BUCKET: s3://fabiopinhodev.com.br
 phases:
   install:
-    runtime-versions:
-      nodejs: 14.x
-  pre_build:
     commands:
       - echo Installing source NPM dependencies...
-      - npm install && npm install -g @angular/cli
+      - npm install
+      - npm install -g @angular/cli
   build:
     commands:
       - echo Build started on `date`      
