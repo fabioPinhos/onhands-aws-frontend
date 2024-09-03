@@ -3,6 +3,7 @@ version: 0.2
 env:
   variable:
     APP_NAME: "community-events-front"
+    S3_BUCKET: s3://fabiopinhodev.com.br
 phases:
   install:
     runtime-versions:
@@ -13,12 +14,16 @@ phases:
       - npm install && npm install -g @angular/cli
   build:
     commands:
-      - echo Build started on `date`
-      - echo Compiling the dist folder
-      - npm build
+      - echo Build started on `date`      
+      - npm build      
   post_build:
     commands:
-      - echo Build completed on `date`
-      - cd dist/$APP_NAME
-      - ls -la
-      - aws s3 sync . s3://fabiopinhodev.com.br --delete
+      - echo Clearing S3 bucket...
+      - aws s3 rm s3://${S3_BUCKET} --recursive
+      - echo Copying files to S3...
+      - aws s3 cp dist/${APP_NAME} s3://${S3_BUCKET} 
+  artifacts:
+    files:
+      - '**/*'
+    discard-paths: no
+    base-directory: 'dist/${APP_NAME}/browser'
