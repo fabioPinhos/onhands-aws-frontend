@@ -17,4 +17,4 @@ artifacts:
   files:
     - '**/*'
   discard-paths: no
-  base-directory: 'dist/${APP_NAME}/browser'
+  base-directory: 'dist/community-events-front/browser'
