@@ -13,7 +13,6 @@ export class EventComponent {
   @Input() description: string = '';
   @Input() date: string = '';
   @Input() city: string = '';
-  @Input() state: string = '';
-  @Input() bannerUrl: string = '';
+  @Input() state: string = '';  
   @Input() url: string = '';
 }

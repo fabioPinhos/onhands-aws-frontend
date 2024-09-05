@@ -41,6 +41,7 @@ export class EventsService {
   }
 
   createEvent(event: FormData) {
+    this.http.get(`${this.APIurl}/random-uuid`);
     return this.http.post(`${this.APIurl}/api/event`, event);
   }
 

@@ -23,7 +23,6 @@ export interface CreateEventFormControl {
   date: FormControl<string | null>;
   city: FormControl<string | null>;
   state: FormControl<string | null>;
-  bannerFile: FormControl<File | null>;
   url: FormControl<string | null>;
 }
 
@@ -57,8 +56,7 @@ export class CreateEventComponent implements OnInit {
       date: new FormControl(null, [Validators.required]),
       city: new FormControl(null, [Validators.required]),
       state: new FormControl(null, [Validators.required]),
-      url: new FormControl(null, [Validators.pattern(URLRegexValidator)]),
-      bannerFile: new FormControl(null),
+      url: new FormControl(null, [Validators.pattern(URLRegexValidator)]),      
     });
     this.getLocales();
   }
@@ -126,7 +124,6 @@ export class CreateEventComponent implements OnInit {
       const data = new FormData();
       data.append('title', this.createEventForm.value.title);
       data.append('description', this.createEventForm.value.description);
-      data.append('image', this.createEventForm.value.bannerFile);
       data.append('state', this.createEventForm.value.state ?? '');
       data.append('city', this.createEventForm.value.city ?? '');
       data.append('eventUrl', this.createEventForm.value.url);
@@ -194,10 +191,7 @@ export class CreateEventComponent implements OnInit {
   }
 
   fileChange(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
-      this.createEventForm.get('bannerFile')?.setValue(input.files[0]);
-    }
+    const input = event.target as HTMLInputElement;    
   }
 
   handleEventType(type: EventType) {

@@ -22,8 +22,7 @@ describe('EventComponent', () => {
     component.description = EVENT_MOCK.description;
     component.date = EVENT_MOCK.date;
     component.city = EVENT_MOCK.city ?? '';
-    component.state = EVENT_MOCK.state ?? '';
-    component.bannerUrl = EVENT_MOCK.imgUrl;
+    component.state = EVENT_MOCK.state ?? '';    
     component.url = EVENT_MOCK.eventUrl;
 
     fixture.detectChanges();
@@ -34,17 +33,6 @@ describe('EventComponent', () => {
   });
 
   describe('initial state rendering', () => {
-    it('should render banner image', () => {
-      const imageElement = fixture.debugElement.query(
-        By.css('[data-testid="bannerImg"]'),
-      );
-
-      expect(imageElement.attributes['alt']).toEqual('banner do evento');
-      expect(imageElement.attributes['src']).toEqual(
-        'https://www.proway.com.br/foto/png/blog/750/workshop-gratuito-game-developer.jpg',
-      );
-    });
-
     it('should render state and city detail', () => {
       const stateAndCityElement = fixture.debugElement.query(
         By.css('[data-testid="stateAndCity"]'),
