@@ -13,7 +13,6 @@ export type EventItem = {
   date: string;
   city?: string;
   state?: string;
-  imgUrl: string;
   eventUrl: string;
   coupons?: Coupon[];
 };

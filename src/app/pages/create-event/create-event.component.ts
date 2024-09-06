@@ -120,6 +120,8 @@ export class CreateEventComponent implements OnInit {
       this.setLocaleAsString();
     }
 
+    console.log('Evento sendo criado');
+
     if (this.validDate) {
       const data = new FormData();
       data.append('title', this.createEventForm.value.title);
@@ -137,6 +139,8 @@ export class CreateEventComponent implements OnInit {
           .getTime()
           .toString(),
       );
+
+      console.log('Evento sendo criado:::' + data);
 
       this.eventsService.createEvent(data).subscribe({
         next: () => {
