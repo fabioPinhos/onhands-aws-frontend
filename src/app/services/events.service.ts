@@ -44,9 +44,6 @@ export class EventsService {
 
     this.getRandom();
 
-    console.log('Evento sendo criado :::: 00fabiopinho-funcao ::::');
-    this.http.get(`${this.APIurl}/00fabiopinho-funcao`);
-
     console.log('Evento sendo criado :::: createEvent ::::' + event);
     return this.http.post(`${this.APIurl}/api/event`, event);
   }
